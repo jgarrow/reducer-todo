@@ -10,6 +10,12 @@ export const initialState = {
 
 export const todoReducer = (state, action) => {
     switch (action.type) {
+        case "ADD_ITEM":
+            return {
+                ...state,
+                todo: state.todo.concat(action.payload)
+            };
+
         default:
             return state;
     }
