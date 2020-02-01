@@ -10,7 +10,7 @@ export default () => {
     const [newTodo, setNewTodo] = useState({
         item: "",
         completed: false,
-        id: new Date()
+        id: Date.now()
     });
 
     const handleChange = e => {
@@ -20,6 +20,11 @@ export default () => {
     const addNewItem = e => {
         e.preventDefault();
         dispatch({ type: "ADD_ITEM", payload: newTodo });
+        setNewTodo({
+            item: "",
+            completed: false,
+            id: Date.now()
+        });
     };
 
     const handleCompleteCheck = item => {
