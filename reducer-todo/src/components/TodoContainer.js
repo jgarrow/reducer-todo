@@ -23,10 +23,12 @@ export default () => {
     };
 
     const handleCompleteCheck = item => {
-        const items = [...state.todo];
-        const itemIndex = items.findIndex(element => element.id === item.id);
+        dispatch({ type: "TOGGLE_COMPLETED", payload: item });
+    };
 
-        dispatch({ type: "TOGGLE_COMPLETED", payload: itemIndex });
+    const clearCompleted = e => {
+        e.preventDefault();
+        dispatch({ type: "CLEAR_COMPLETED" });
     };
 
     return (
@@ -35,6 +37,7 @@ export default () => {
                 newTodo={newTodo}
                 handleChange={handleChange}
                 addNewItem={addNewItem}
+                clearCompleted={clearCompleted}
             />
             {state.todo.map(item => (
                 <TodoItem

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default ({ newTodo, handleChange, addNewItem }) => {
+export default ({ newTodo, handleChange, addNewItem, clearCompleted }) => {
     return (
         <form>
             <input
@@ -14,6 +14,7 @@ export default ({ newTodo, handleChange, addNewItem }) => {
             <label htmlFor="addTodo">Add new item:</label>
 
             <button onClick={addNewItem}>Add item to todo list</button>
+            <button onClick={clearCompleted}>Clear completed items</button>
         </form>
     );
 };

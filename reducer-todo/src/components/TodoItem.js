@@ -50,7 +50,7 @@ export default ({ item, handleCompleteCheck }) => (
         <CompleteCheckContainer>
             <Checkbox
                 selected={item.completed}
-                onClick={isStyledComponent => handleCompleteCheck(item)}
+                onClick={() => handleCompleteCheck(item)}
             />
             <p style={{ margin: 0 }}>Completed</p>
         </CompleteCheckContainer>

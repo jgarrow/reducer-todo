@@ -16,16 +16,30 @@ export const todoReducer = (state, action) => {
                 todo: state.todo.concat(action.payload)
             };
         case "TOGGLE_COMPLETED":
+            const item = action.payload;
             const todos = [...state.todo];
-            const updatedItem = { ...todos[action.payload] };
+            const payloadIndex = todos.findIndex(
+                element => element.id === item.id
+            );
+
+            const updatedItem = { ...todos[payloadIndex] };
             updatedItem.completed = !updatedItem.completed;
-            todos[action.payload] = updatedItem;
+            todos[payloadIndex] = updatedItem;
 
             return {
                 ...state,
                 todo: todos
             };
 
+        case "CLEAR_COMPLETED":
+            const uncompletedItems = state.todo.filter(
+                item => item.completed === false
+            );
+
+            return {
+                ...state,
+                todo: uncompletedItems
+            };
         default:
             return state;
     }
