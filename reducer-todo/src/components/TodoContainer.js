@@ -22,6 +22,13 @@ export default () => {
         dispatch({ type: "ADD_ITEM", payload: newTodo });
     };
 
+    const handleCompleteCheck = item => {
+        const items = [...state.todo];
+        const itemIndex = items.findIndex(element => element.id === item.id);
+
+        dispatch({ type: "TOGGLE_COMPLETED", payload: itemIndex });
+    };
+
     return (
         <div>
             <TodoForm
@@ -30,7 +37,11 @@ export default () => {
                 addNewItem={addNewItem}
             />
             {state.todo.map(item => (
-                <TodoItem key={item.id} item={item} />
+                <TodoItem
+                    key={item.id}
+                    item={item}
+                    handleCompleteCheck={handleCompleteCheck}
+                />
             ))}
         </div>
     );

@@ -15,6 +15,16 @@ export const todoReducer = (state, action) => {
                 ...state,
                 todo: state.todo.concat(action.payload)
             };
+        case "TOGGLE_COMPLETED":
+            const todos = [...state.todo];
+            const updatedItem = { ...todos[action.payload] };
+            updatedItem.completed = !updatedItem.completed;
+            todos[action.payload] = updatedItem;
+
+            return {
+                ...state,
+                todo: todos
+            };
 
         default:
             return state;
