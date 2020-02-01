@@ -1,12 +1,19 @@
 import React from "react";
+import styled from "styled-components";
 
 import TodoContainer from "./components/TodoContainer";
+import "./App.css";
+
+const AppContainer = styled.div`
+    text-align: center;
+`;
 
 function App() {
     return (
-        <div className="App">
+        <AppContainer>
+            <h1>My Todo List</h1>
             <TodoContainer />
-        </div>
+        </AppContainer>
     );
 }
 

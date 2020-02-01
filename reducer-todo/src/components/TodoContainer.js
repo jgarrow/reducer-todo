@@ -1,8 +1,19 @@
 import React, { useState, useReducer } from "react";
+import styled from "styled-components";
 
 import { initialState, todoReducer } from "../reducers";
 import TodoForm from "./TodoForm";
 import TodoItem from "./TodoItem";
+
+const TodoContainer = styled.div`
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 80%;
+    max-width: 960px;
+    margin: 0 auto;
+`;
 
 export default () => {
     const [state, dispatch] = useReducer(todoReducer, initialState);
@@ -44,13 +55,15 @@ export default () => {
                 addNewItem={addNewItem}
                 clearCompleted={clearCompleted}
             />
-            {state.todo.map(item => (
-                <TodoItem
-                    key={item.id}
-                    item={item}
-                    handleCompleteCheck={handleCompleteCheck}
-                />
-            ))}
+            <TodoContainer>
+                {state.todo.map(item => (
+                    <TodoItem
+                        key={item.id}
+                        item={item}
+                        handleCompleteCheck={handleCompleteCheck}
+                    />
+                ))}
+            </TodoContainer>
         </div>
     );
 };
